@@ -123,8 +123,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'posts' / 'static'
-    BASE_DIR / 'profiles' / 'static'
+    BASE_DIR / 'posts' / 'static',
+    BASE_DIR / 'profiles' / 'static',
 ]
 # Place for Images that user will put
 MEDIA_URL = '/media/'
