@@ -11,7 +11,7 @@ const spinnerBox = document.getElementById('spinner-box')
 const titleInput = document.getElementById('id_title')
 const bodyInput = document.getElementById('id_body')
 const updateUrl = window.location.href + "update/"
-const deleteUrl = window.location.href + "deleteUrl/"
+const deleteUrl = window.location.href + "delete/"
 
 const updateForm = document.getElementById('update-form')
 const deleteForm = document.getElementById('delete-form')
@@ -62,6 +62,7 @@ $.ajax({
 
 })
 
+
 updateForm.addEventListener('submit', e=>{
     e.preventDefault()
 
@@ -87,4 +88,22 @@ updateForm.addEventListener('submit', e=>{
         }
     })
 
+})
+
+deleteForm.addEventListener('submit', e=>{
+    e.preventDefault()
+
+    $.ajax({
+        tpye: 'POST',
+        url: deleteUrl,
+        data: {'csrfmiddlewaretoken': csrf[0].value,},
+        success: function(response){
+            window.location.href = window.location.origin
+            localStorage.setItem('title', titleInput.value)
+        },
+        error: function(error){
+            console.log(error)
+        }
+        
+    })
 })
