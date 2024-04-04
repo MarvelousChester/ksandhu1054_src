@@ -16,20 +16,20 @@
     <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="post-form">
-                    {% csrf_token%}
-                    {{form|crispy}}
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
-                        <button type="submit" class="btn btn-success">+ add</button>
-                    </div>
-                </form>
-            </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="post-form">
+                        {% csrf_token%}
+                        {{form|crispy}}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
+                            <button type="submit" class="btn btn-success">+ add</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
