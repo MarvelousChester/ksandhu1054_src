@@ -63,6 +63,17 @@ def like_unlike_post(request):
             obj.liked.add(request.user)
         return JsonResponse({'liked': liked, 'count': obj.like_count})
 
+def post_detail(request, pk):
+    obj = Post.objects.get(pk=pk)
+    form = PostForm()
+
+    context = {
+        'obj': obj,
+        'form': form,
+    }
+
+    return render(request, 'posts/detail.html', context)
+
 
 def hello_world_view(request):
     return JsonResponse({'text': 'Hello World'})
