@@ -12,6 +12,12 @@
 
 {% block content%}
 <!-- Modal -->
+<a href="{% url 'posts:main-board'%}" id="back-btn" class="btn btn-info">back</a>
+<button id="update-btn" class="btn btn-primary not-visible" data-bs-toggle="modal" data-bs-target="#updatePostModal">update</button>
+<button id="delete-btn" class="btn btn-danger not-visible"  data-bs-toggle="modal" data-bs-target="#deletePostModal">delete</button>
+<div id="spinner-box" class="text-center">
+    <div class="spinner-border" role="status"></div>
+</div>
 <div class="modal fade" id="updatePostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -59,7 +65,7 @@
 </div>
 <!-- carousel -->
 {% if obj.get_photos%}
-    <div id="carouselExampleControls" class="carousel slide mb-2" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide mb-2 mt-2" data-bs-ride="carousel">
         <div class="carousel-inner">
             {% for p in obj.get_photos%}
                 <div class="carousel-item {% if forloop.counter == 1 %} active{% endif %}">
@@ -79,12 +85,7 @@
 {% else%}
     <div class="mt-2 mb-2">No Photos to Show</div>
 {% endif%}
-<a href="{% url 'posts:main-board'%}" id="back-btn" class="btn btn-info">back</a>
-<button id="update-btn" class="btn btn-primary not-visible" data-bs-toggle="modal" data-bs-target="#updatePostModal">update</button>
-<button id="delete-btn" class="btn btn-danger not-visible"  data-bs-toggle="modal" data-bs-target="#deletePostModal">delete</button>
-<div id="spinner-box" class="text-center">
-    <div class="spinner-border" role="status"></div>
-</div>
+
 <div class="mt-1" id="post-box"></div>
 <div id="author-box">
     <hr/>

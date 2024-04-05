@@ -44,11 +44,9 @@ $.ajax({
         titleEl.setAttribute('class', 'mt-3')
         titleEl.setAttribute('id', 'title')
 
-
         const bodyEl = document.createElement('p')
         bodyEl.setAttribute('class', 'mt-1')
         bodyEl.setAttribute('id', 'body')
-        
         
         const userImgEl = document.createElement('img')
         userImgEl.setAttribute('class', 'rounded-circle ')
