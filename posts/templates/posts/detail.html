@@ -79,7 +79,6 @@
 {% else%}
     <div class="mt-2 mb-2">No Photos to Show</div>
 {% endif%}
-
 <a href="{% url 'posts:main-board'%}" id="back-btn" class="btn btn-info">back</a>
 <button id="update-btn" class="btn btn-primary not-visible" data-bs-toggle="modal" data-bs-target="#updatePostModal">update</button>
 <button id="delete-btn" class="btn btn-danger not-visible"  data-bs-toggle="modal" data-bs-target="#deletePostModal">delete</button>
@@ -87,5 +86,8 @@
     <div class="spinner-border" role="status"></div>
 </div>
 <div class="mt-1" id="post-box"></div>
-
+<div id="author-box">
+    <hr/>
+    <div class="mt-1 ratio ratio-1x1 rounded-circle overflow-hidde" id="profie-box" style="max-width: 85px; margin-right:80%;"></div>
+</div>
 {% endblock content%}

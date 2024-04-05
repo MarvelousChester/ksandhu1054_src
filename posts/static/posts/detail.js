@@ -1,6 +1,7 @@
 console.log("hello world")
 
 const postBox = document.getElementById('post-box')
+const authorBox = document.getElementById('author-box')
 const alertBox = document.getElementById('alert-box')
 const backBtn = document.getElementById('back-btn')
 const updateBtn = document.getElementById('update-btn')
@@ -12,15 +13,17 @@ const titleInput = document.getElementById('id_title')
 const bodyInput = document.getElementById('id_body')
 const updateUrl = window.location.href + "update/"
 const deleteUrl = window.location.href + "delete/"
-
+const profileBox = document.getElementById('profie-box')
 const updateForm = document.getElementById('update-form')
 const deleteForm = document.getElementById('delete-form')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
+
+
+
 //backBtn.addEventListener('click', ()=>{
  //   history.back()
 //})
-
 
 $.ajax({
     type: 'GET',
@@ -45,15 +48,31 @@ $.ajax({
         const bodyEl = document.createElement('p')
         bodyEl.setAttribute('class', 'mt-1')
         bodyEl.setAttribute('id', 'body')
+        
+        
+        const userImgEl = document.createElement('img')
+        userImgEl.setAttribute('class', 'rounded-circle ')
+        userImgEl.setAttribute('src', data.avatar)
+        userImgEl.setAttribute('alt', 'profileImage')
+      
+        const userNameEl = document.createElement('p')
+        userNameEl.setAttribute('class', 'mt-1')
+        userNameEl.setAttribute('id', 'user')
+        userNameEl.setAttribute('id', 'profile')
 
         titleEl.textContent = data.title
         bodyEl.textContent = data.body
+   
+        titleInput.value = data.title
+        bodyInput.value = data.body
+        userNameEl.textContent = data.author
 
         postBox.appendChild(titleEl)
         postBox.appendChild(bodyEl)
-  
-        titleInput.value = data.title
-        bodyInput.value = data.body
+
+        profileBox.appendChild(userImgEl)
+        authorBox.appendChild(userNameEl)
+
         spinnerBox.classList.add('not-visible')
     },
     error: function(error){
