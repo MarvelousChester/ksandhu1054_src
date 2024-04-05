@@ -4,9 +4,10 @@ from django.http import JsonResponse, HttpResponse
 from .forms import PostForm
 from profiles.models import Profile
 from .utils import action_permission
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required
 def post_list_and_create(request):
     form = PostForm(request.POST or None)
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -26,9 +27,9 @@ def post_list_and_create(request):
     context = {
         'form': form,
     }
-   
     return render(request, 'posts/main.html', context) # Will be using the key in the template
 
+@login_required
 # initialy display 3 posts and then increase them, get lower and upper and then add thme
 def load_post_data_view(request, num_posts):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -51,6 +52,7 @@ def load_post_data_view(request, num_posts):
         return JsonResponse({'data':data[lower:upper], 'size': size})
     return JsonResponse({'msg': 'access denied'})
 
+@login_required
 def post_detail_data_view(request, pk):
     obj = Post.objects.get(pk=pk)
     data = {
@@ -62,7 +64,7 @@ def post_detail_data_view(request, pk):
     }
     return JsonResponse({'data': data})
 
-
+@login_required
 def like_unlike_post(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         pk = request.POST.get('pk')
@@ -77,6 +79,8 @@ def like_unlike_post(request):
             obj.liked.add(request.user)
         return JsonResponse({'liked': liked, 'count': obj.like_count})
     return JsonResponse({'msg': 'access denied'})
+
+@login_required
 def post_detail(request, pk):
     obj = Post.objects.get(pk=pk)
     form = PostForm()
@@ -89,7 +93,8 @@ def post_detail(request, pk):
     return render(request, 'posts/detail.html', context)
 
 
-
+@action_permission
+@login_required
 def update_post(request, pk):
 
     obj = Post.objects.get(pk=pk)
@@ -106,6 +111,7 @@ def update_post(request, pk):
     return JsonResponse({'msg': 'access denied'})
 
 @action_permission
+@login_required
 def delete_post(request, pk):
     obj = Post.objects.get(pk=pk)
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
