@@ -25,9 +25,9 @@
                 <h5 class="modal-title" id="exampleModalLabel">Update Post</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" autocomplete="off">
+            <div class="modal-body" >
                 <div id='alert-box'></div>
-                <form id="update-form">
+                <form id="update-form" autocomplete="off">
                     {% csrf_token%}
                     {{form|crispy}}
                     <div class="modal-footer">
@@ -48,7 +48,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" autocomplete="off">
+            <div class="modal-body">
                 Are you sure you want to delete <b>"{{obj.title}}"</b>?
             </div>
             <div class="modal-footer"> 
